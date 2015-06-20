@@ -119,26 +119,10 @@ http://crypto-js.googlecode.com/svn/tags/3.0.2/build/components/enc-base64-min.j
     		
         <pre><code style="zoom:1;">
 var A = new amt();
-function generate_key() {
-  var key = document.getElementById('key');
-  var operations = document.getElementById('operations');
-  var showsg = document.getElementById('signature');
-  var showts = document.getElementById('timestamp');
-  var ecshowsg = document.getElementById('ecsignature');
-  var ecshowts = document.getElementById('ectimestamp');
-  var stub_url = document.getElementById('stub_url');
-  
-  var result = A.generate_key({
-    operation: operations.value,
-    secret_key: key.value
-  });
-  
-  showsg.value = result.signature;
-  showts.value = result.timestamp;
-  ecshowsg.value = result.url_encoded_signature;
-  ecshowts.value = result.url_encoded_timestamp;
-  stub_url.value = result.stub_url;
-}
+var result = A.generate_key({
+  operation: operation,
+  secret_key: secret_key
+});
         </code></pre>
         
         <p>
