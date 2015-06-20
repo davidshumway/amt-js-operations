@@ -103,19 +103,19 @@
         Generally speaking the signature is the only dynamic portion of most AMT AWS Requester Services requests.
         It is common to create the signature in Java, Python, etc., but of course it is also possible to calculate it using JavaScript.
         According to the AWS documentation the signature is generated in the following manner:
-        
         <code>
 A request signature, an HMAC, is calculated by concatenating the values of the Service, Operation, and Timestamp parameters, in that order, and then calculating an RFC 2104-compliant HMAC, using the Secret Access Key as the "key." 
         </code> (<a href="http://docs.aws.amazon.com/AWSMechTurk/latest/AWSMechanicalTurkRequester/MakingRequests_RequestAuthenticationArticle.html">link</a>).
-
-    		The following two libraries provide the functionality required to create an AWS signature:
+        </p>
+        
+        </p>The following two libraries provide the functionality required to create an AWS signature:</p>
     		
     		<pre><code>
 http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/hmac-sha1.js
 http://crypto-js.googlecode.com/svn/tags/3.0.2/build/components/enc-base64-min.js
     		</code></pre>
     		
-    		To generate an AWS signature using the amt-js-operations.js library...</p>
+    		<p>To generate an AWS signature using the amt-js-operations.js library...</p>
     		
         <pre><code style="zoom:1;">
 function generate_key() {
@@ -158,12 +158,7 @@ function generate_key() {
         For example, to assign a qualification to a worker:</p>
         
         <pre><code style="zoom:1;">
-https://mechanicalturk.amazonaws.com/?Service=AWSMechanicalTurkRequester
-&Version=2014-08-15
-&Operation=AssignQualification
-&Signature=[SIGNATURE FROM ABOVE IN ENCODED URL FORMAT]
-&Timestamp=[TIMESTAMP FROM ABOVE IN ENCODED URL FORMAT]
-
+[INITIAL URL FROM ABOVE]
 &AWSAccessKeyId=[AWS_REQUESTER_ACCESS_KEY, e.g. 123RVWYBAZW00EXAMPLE]
 &QualificationTypeId=[QUALIFICATIONID, e.g. 789RVWYBAZW00EXAMPLE]
 &WorkerId=[WORKERID, e.g. AZ3456EXAMPLE]
