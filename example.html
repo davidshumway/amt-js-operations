@@ -13,7 +13,7 @@
     <script src="hmac-sha1.js"></script>  
     <script src="enc-base64-min.js"></script>
     <script src="amt-js-operations.js"></script>
-    var A = new amt(); // Global
+    
     <style type="text/css">
       #signature, #timestamp, #ecsignature, #ectimestamp {
         width: 60%;
@@ -29,6 +29,7 @@
     </style>
     
     <script type="text/javascript">
+    var A = new amt(); // Global
     window.onload = function() {
       // Populate select field
       // This is retrieved from `http://docs.aws.amazon.com/AWSMechTurk/latest/AWSMturkAPI/ApiReference_OperationsArticle.html`.
