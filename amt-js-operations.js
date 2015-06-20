@@ -13,15 +13,17 @@ var amt = function() {
  * @return Object containing keys "service", "operation", "timestamp", and "signature"
  */
 amt.prototype.generate_signature = function(options) {
-    var service = "AWSMechanicalTurkRequester";
-    var timestamp = new Date().toISOString();
-    var str = service + options.operation + timestamp;
-    var signature = CryptoJS.HmacSHA1(str, options.secret_key).toString(CryptoJS.enc.Base64);
-    return {
-      operation: options.operation,
-      secret_key: options.secret_key,
-      service: service,
-      timestamp: timestamp,
-      signature: signature
-    }
+  var service = "AWSMechanicalTurkRequester";
+  var timestamp = new Date().toISOString();
+  var str = service + options.operation + timestamp;
+  var signature = CryptoJS.HmacSHA1(str, options.secret_key).toString(CryptoJS.enc.Base64);
+  return {
+    operation: options.operation,
+    secret_key: options.secret_key,
+    service: service,
+    timestamp: timestamp,
+    signature: signature,
+    url_encoded_timestamp: encodeURIComponent(timestamp),
+    url_encoded_signature: encodeURIComponent(signature),
   }
+}
