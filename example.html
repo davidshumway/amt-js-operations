@@ -13,6 +13,7 @@
     <script src="hmac-sha1.js"></script>  
     <script src="enc-base64-min.js"></script>
     <script src="amt-js-operations.js"></script>
+    var A = new amt(); // Global
     <style type="text/css">
       #signature, #timestamp, #ecsignature, #ectimestamp {
         width: 60%;
@@ -29,7 +30,6 @@
     
     <script type="text/javascript">
     window.onload = function() {
-      var A = new amt();console.log(A);console.log(A.opts);
       // Populate select field
       // This is retrieved from `http://docs.aws.amazon.com/AWSMechTurk/latest/AWSMturkAPI/ApiReference_OperationsArticle.html`.
       // Retrieval date: June 19, 2015.
@@ -40,26 +40,26 @@
         opt.value = A.opts[i];
         select.appendChild(opt);
       }
-      function generate_key() {
-        var key = document.getElementById('key');
-        var select = document.getElementById('operations');
-        var showsg = document.getElementById('signature');
-        var showts = document.getElementById('timestamp');
-        var ecshowsg = document.getElementById('ecsignature');
-        var ecshowts = document.getElementById('ectimestamp');
-        var stub_url = document.getElementById('stub_url');
-        
-        var result = A.generate_signature({
-          operation: select.value,
-          secret_key: key.value
-        });
-        
-        showsg.value = result.signature;
-        showts.value = result.timestamp;
-        ecshowsg.value = result.url_encoded_signature;
-        ecshowts.value = result.url_encoded_timestamp;
-        stub_url.value = result.stub_url;
-      }
+    }
+  function generate_key() {
+      var key = document.getElementById('key');
+      var select = document.getElementById('operations');
+      var showsg = document.getElementById('signature');
+      var showts = document.getElementById('timestamp');
+      var ecshowsg = document.getElementById('ecsignature');
+      var ecshowts = document.getElementById('ectimestamp');
+      var stub_url = document.getElementById('stub_url');
+      
+      var result = A.generate_signature({
+        operation: select.value,
+        secret_key: key.value
+      });
+      
+      showsg.value = result.signature;
+      showts.value = result.timestamp;
+      ecshowsg.value = result.url_encoded_signature;
+      ecshowts.value = result.url_encoded_timestamp;
+      stub_url.value = result.stub_url;
     }
     </script>
   </head>
