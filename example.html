@@ -18,6 +18,9 @@
       #signature, #timestamp, #ecsignature, #ectimestamp, #stub_url {
         width: 60%;
       }
+      #stub_url {
+       height:160px; 
+      }
       /*Overwrite width of main content. Default=640px.*/
       #main_content {
        max-width: 800px !important;
@@ -145,7 +148,7 @@ function generate_key() {
         <span class="span_float">Signature:</span><input type="text" id="ecsignature" disabled /><br />
         <span class="span_float">Timestamp:</span><input type="text" id="ectimestamp" disabled /><br />
         <h4>Initial URL:</h4>
-        <span class="span_float">Initial URL:</span><input type="text" id="stub_url" disabled /><br />
+        <span class="span_float">Initial URL:</span><textarea id="stub_url" disabled /></textarea><br />
         <br />
         For example, to assign a qualification to a worker:</p>
         
