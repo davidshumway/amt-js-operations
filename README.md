@@ -1,2 +1,2 @@
 # amt-js-operations
-JavaScript RESTful URL generator Amazon's Mechanical Turk Requester API
+Example for JavaScript RESTful URL generator Amazon's Mechanical Turk Requester API.
