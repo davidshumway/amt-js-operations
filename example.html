@@ -105,12 +105,12 @@ A request signature, an HMAC, is calculated by concatenating the values of the S
     		
     		The following two libraries provide the functionality to create the AWS signature:
     		
-    		<code><pre>
+    		<pre><code>
 http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/hmac-sha1.js
 http://crypto-js.googlecode.com/svn/tags/3.0.2/build/components/enc-base64-min.js
-    		</pre></code>
+    		</code></pre>
     		
-    		For example, by including the following two libraries...</p>
+    		For example, to generate an AWS signature...</p>
     		
         <pre><code style="zoom:1;">
 function generate_key() {
