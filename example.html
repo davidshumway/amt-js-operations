@@ -92,23 +92,23 @@
         <h3>AWS AMT Requester Services URL Generator</h3>
         
         <p>
-        For generating API web requests for requesters on Amazon's AWS Mechanical Turk website.
-        Allows the ability to easily call an Amazon Mechanical Turk Requester operation request through a "REST" URL.
-        Bypasses the need to use the <a href="http://web.mit.edu/cathywu/Public/AMT/aws-mturk-clt-1.3.0/UserGuide.html">Amazon Mechanical Turk Command Line Tools</a>.
-        In addition the URL is created using client-side JavaScript only.
+          For generating API web requests for requesters on Amazon's AWS Mechanical Turk website.
+          Allows the ability to easily call an Amazon Mechanical Turk Requester operation request through a "REST" URL.
+          Bypasses the need to use the <a href="http://web.mit.edu/cathywu/Public/AMT/aws-mturk-clt-1.3.0/UserGuide.html">Amazon Mechanical Turk Command Line Tools</a>.
+          In addition the URL is created using client-side JavaScript only.
         </p>
         
         <p>
-        To create the URL it is only necessary to provide a "signature" argument.
-        Generally speaking the signature is the only dynamic portion of most AMT AWS Requester Services requests.
-        It is common to create the signature in Java, Python, etc., but of course it is also possible to calculate it using JavaScript.
-        According to the AWS documentation the signature is generated in the following manner:
-        <code>
-A request signature, an HMAC, is calculated by concatenating the values of the Service, Operation, and Timestamp parameters, in that order, and then calculating an RFC 2104-compliant HMAC, using the Secret Access Key as the "key." 
-        </code> (<a href="http://docs.aws.amazon.com/AWSMechTurk/latest/AWSMechanicalTurkRequester/MakingRequests_RequestAuthenticationArticle.html">link</a>).
+          To create the URL it is only necessary to provide a "signature" argument.
+          Generally speaking the signature is the only dynamic portion of most AMT AWS Requester Services requests.
+          It is common to create the signature in Java, Python, etc., but of course it is also possible to calculate it using JavaScript.
+          According to the AWS documentation the signature is generated in the following manner:
+          <code>
+  A request signature, an HMAC, is calculated by concatenating the values of the Service, Operation, and Timestamp parameters, in that order, and then calculating an RFC 2104-compliant HMAC, using the Secret Access Key as the "key." 
+          </code> (<a href="http://docs.aws.amazon.com/AWSMechTurk/latest/AWSMechanicalTurkRequester/MakingRequests_RequestAuthenticationArticle.html">link</a>).
         </p>
         
-        </p>The following two libraries provide the functionality required to create an AWS signature:</p>
+        <p>The following two libraries provide the functionality required to create an AWS signature:</p>
     		
     		<pre><code>
 http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/hmac-sha1.js
@@ -126,23 +126,28 @@ var result = A.generate_key({
         </code></pre>
         
         <p>
-        <h4>AMT AWS Requester Services URL Generator</h4>
-        This tool utilizes client-side JavaScript only. No external requests are made. No data is passed on to any server.
-        No data is saved using cookies.</p>
+          <h4>AMT AWS Requester Services URL Generator</h4>
+          This tool utilizes client-side JavaScript only. No external requests are made. No data is passed on to any server.
+          No data is saved using cookies.
+        </p>
         
         <p>
-        <span class="span_float">Operation:</span><select id="operations"></select>
-        (<a href="http://docs.aws.amazon.com/AWSMechTurk/latest/AWSMturkAPI/ApiReference_OperationsArticle.html">Operations API Reference</a>)<br />
-        <span class="span_float">AWS Requester Secret Key:</span><input type="text" id="key" placeholder="YOURSECRETKEY" /><br />
-        <input type="button" value="Generate Signature!" onclick="generate_key();" style="zoom:2;" /><br />
-        <h4>Signature & Timestamp:</h4>
-        <span class="span_float">Signature:</span><input type="text" id="signature" disabled /><br />
-        <span class="span_float">Timestamp:</span><input type="text" id="timestamp" disabled /><br />
-        <h4>Signature & Timestamp in URL Encoded Format:</h4>
-        <span class="span_float">Signature:</span><input type="text" id="ecsignature" disabled /><br />
-        <span class="span_float">Timestamp:</span><input type="text" id="ectimestamp" disabled /><br />
-        <h4>Initial URL:</h4>
-        <span class="span_float">Initial URL:</span><textarea id="stub_url" disabled /></textarea><br />
+          After the URL is generated add any other required parameters and then open the URL in a browser to execute the API request!
+        </p>
+        
+        <p>
+          <span class="span_float">Operation:</span><select id="operations"></select>
+          (<a href="http://docs.aws.amazon.com/AWSMechTurk/latest/AWSMturkAPI/ApiReference_OperationsArticle.html">Operations API Reference</a>)<br />
+          <span class="span_float">AWS Requester Secret Key:</span><input type="text" id="key" placeholder="YOURSECRETKEY" /><br />
+          <input type="button" value="Generate Signature!" onclick="generate_key();" style="zoom:2;" /><br />
+          <h4>Signature & Timestamp:</h4>
+          <span class="span_float">Signature:</span><input type="text" id="signature" disabled /><br />
+          <span class="span_float">Timestamp:</span><input type="text" id="timestamp" disabled /><br />
+          <h4>Signature & Timestamp in URL Encoded Format:</h4>
+          <span class="span_float">Signature:</span><input type="text" id="ecsignature" disabled /><br />
+          <span class="span_float">Timestamp:</span><input type="text" id="ectimestamp" disabled /><br />
+          <h4>Initial URL:</h4>
+          <span class="span_float">Initial URL:</span><textarea id="stub_url" disabled /></textarea><br />
         </p>
         
         <p>For example, to assign a qualification to a worker:</p>
@@ -154,7 +159,7 @@ var result = A.generate_key({
 &IntegerValue=[QUALIFICATION_VALUE, e.g. 90]
 &SendNotification=[true|false, Default If Blank=true]
         </code></pre>
-        
+
         <p>For example, to update a worker's qualification score:</p>
         <pre><code style="zoom:1;">
 [INITIAL URL FROM ABOVE]
