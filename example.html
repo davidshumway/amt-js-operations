@@ -49,7 +49,7 @@
         var ecshowts = document.getElementById('ectimestamp');
         var stub_url = document.getElementById('stub_url');
         
-        var result = A.generate_key({
+        var result = A.generate_signature({
           operation: select.value,
           secret_key: key.value
         });
