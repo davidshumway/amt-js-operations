@@ -137,24 +137,25 @@ function generate_key() {
         (<a href="http://docs.aws.amazon.com/AWSMechTurk/latest/AWSMturkAPI/ApiReference_OperationsArticle.html">Operations API Reference</a>)<br />
         <span class="span_float">AWS Requester Secret Key:</span><input type="text" id="key" placeholder="YOURSECRETKEY" /><br />
         <input type="button" value="Generate Signature!" onclick="generate_key();" style="zoom:2;" /><br />
-        <h4>Results:</h4>
+        <h4>Signature & Timestamp:</h4>
         <span class="span_float">Signature:</span><input type="text" id="signature" disabled /><br />
         <span class="span_float">Timestamp:</span><input type="text" id="timestamp" disabled /><br />
-        <h4>Results in URL Encoded Format:</h4>
+        <h4>Signature & Timestamp in URL Encoded Format:</h4>
         <span class="span_float">Signature:</span><input type="text" id="ecsignature" disabled /><br />
         <span class="span_float">Timestamp:</span><input type="text" id="ectimestamp" disabled /><br />
         <h4>Initial URL:</h4>
-        <input type="text" id="stub_url" disabled /><br />
+        <span class="span_float">Initial URL:</span><input type="text" id="stub_url" disabled /><br />
         <br />
         For example, to assign a qualification to a worker:</p>
         
         <pre><code style="zoom:1;">
 https://mechanicalturk.amazonaws.com/?Service=AWSMechanicalTurkRequester
-&AWSAccessKeyId=[AWS_REQUESTER_ACCESS_KEY, e.g. 123RVWYBAZW00EXAMPLE]
 &Version=2014-08-15
 &Operation=AssignQualification
 &Signature=[SIGNATURE FROM ABOVE IN ENCODED URL FORMAT]
 &Timestamp=[TIMESTAMP FROM ABOVE IN ENCODED URL FORMAT]
+
+&AWSAccessKeyId=[AWS_REQUESTER_ACCESS_KEY, e.g. 123RVWYBAZW00EXAMPLE]
 &QualificationTypeId=[QUALIFICATIONID, e.g. 789RVWYBAZW00EXAMPLE]
 &WorkerId=[WORKERID, e.g. AZ3456EXAMPLE]
 &IntegerValue=[QUALIFICATION_VALUE, e.g. 90]
