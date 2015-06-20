@@ -150,7 +150,11 @@ var result = A.generate_key({
           <span class="span_float">Initial URL:</span><textarea id="stub_url" disabled /></textarea><br />
         </p>
         
-        <p>For example, to assign a qualification to a worker:</p>
+        <p>
+          A few examples of using utilizing the API with this tool...
+        </p>
+        
+        <p>To assign a qualification to a worker:</p>
         <pre><code style="zoom:1;">
 [INITIAL URL FROM ABOVE]
 &AWSAccessKeyId=[AWS_REQUESTER_ACCESS_KEY, e.g. 123RVWYBAZW00EXAMPLE]
@@ -159,14 +163,25 @@ var result = A.generate_key({
 &IntegerValue=[QUALIFICATION_VALUE, e.g. 90]
 &SendNotification=[true|false, Default If Blank=true]
         </code></pre>
-
-        <p>For example, to update a worker's qualification score:</p>
+      
+        <p>To update a worker's qualification score:</p>
         <pre><code style="zoom:1;">
 [INITIAL URL FROM ABOVE]
 &AWSAccessKeyId=[AWS_REQUESTER_ACCESS_KEY, e.g. 123RVWYBAZW00EXAMPLE]
 &QualificationTypeId=[QUALIFICATION_TYPE_ID, e.g. 789RVWYBAZW00EXAMPLE]
 &SubjectId=[WORKERID, e.g. AZ3456EXAMPLE]
 &IntegerValue=[QUALIFICATION_VALUE, e.g. 90]
+        </code></pre>
+      
+        <p>To grant a bonus to a worker:</p>
+        <pre><code style="zoom:1;">
+[INITIAL URL FROM ABOVE]
+&AWSAccessKeyId=[AWS_REQUESTER_ACCESS_KEY, e.g. 123RVWYBAZW00EXAMPLE]
+&WorkerId=[WORKERID, e.g. AZ3456EXAMPLE]
+&AssignmentId=[ASSIGNMENTID, e.g. 123RVWYBAZW00EXAMPLE456RVWYBAZW00EXAMPLE]
+&BonusAmount.1.Amount=[BONUS_AMOUNT_IN_CENTS, e.g. 5]
+&BonusAmount.1.CurrencyCode=[BONUS_CURRENCY, e.g. USD]
+&Reason=[REASON_URL_ENCODED, e.g. Thanks%20for%20doing%20great%20work!]
         </code></pre>
         
       </section>
