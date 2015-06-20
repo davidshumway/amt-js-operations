@@ -39,26 +39,27 @@
         opt.value = A.opts[i];
         select.appendChild(opt);
       }
+      function generate_key() {
+        var key = document.getElementById('key');
+        var select = document.getElementById('operations');
+        var showsg = document.getElementById('signature');
+        var showts = document.getElementById('timestamp');
+        var ecshowsg = document.getElementById('ecsignature');
+        var ecshowts = document.getElementById('ectimestamp');
+        var stub_url = document.getElementById('stub_url');
+        
+        var result = A.generate_key({
+          operation: select.value,
+          secret_key: key.value
+        });
+        
+        showsg.value = result.signature;
+        showts.value = result.timestamp;
+        ecshowsg.value = result.url_encoded_signature;
+        ecshowts.value = result.url_encoded_timestamp;
+        stub_url.value = result.stub_url;
+      }
     }
-    function generate_key() {
-      var key = document.getElementById('key');
-      var select = document.getElementById('operations');
-      var showsg = document.getElementById('signature');
-      var showts = document.getElementById('timestamp');
-      var ecshowsg = document.getElementById('ecsignature');
-      var ecshowts = document.getElementById('ectimestamp');
-      var service = "AWSMechanicalTurkRequester";
-      var timestamp = new Date().toISOString();
-      var operation = select.value; // e.g. "GetAccountBalance"
-      var secret = key.value;
-      var str = service + operation + timestamp;
-      var signature = CryptoJS.HmacSHA1(str, secret).toString(CryptoJS.enc.Base64);
-      showsg.value = signature;
-      showts.value = timestamp;
-      ecshowsg.value = encodeURIComponent(signature);
-      ecshowts.value = encodeURIComponent(timestamp);
-    }
-    
     </script>
   </head>
 
@@ -91,18 +92,22 @@
         According to the AWS documentation this signature is generated in the following manner:
         
         <code>
-  A request signature, an HMAC, is calculated by concatenating the values of the Service, Operation, and Timestamp parameters, in that order, and then calculating an RFC 2104-compliant HMAC, using the Secret Access Key as the "key." 
+A request signature, an HMAC, is calculated by concatenating the values of the Service, Operation, and Timestamp parameters, in that order, and then calculating an RFC 2104-compliant HMAC, using the Secret Access Key as the "key." 
         </code> (<a href="http://docs.aws.amazon.com/AWSMechTurk/latest/AWSMechanicalTurkRequester/MakingRequests_RequestAuthenticationArticle.html">link</a>).
         
     		Generally speaking the signature is the only dynamic portion of most AMT AWS Requester Services requests.
     		Although in the documentation there are only examples of calculating the signature in Java, Python, etc., it is of course possible to calculate it using JavaScript.
     		
+    		The following two libraries provide the functionality to create the AWS signature:
+    		
+    		<code><pre>
+http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/hmac-sha1.js
+http://crypto-js.googlecode.com/svn/tags/3.0.2/build/components/enc-base64-min.js
+    		</pre></code>
+    		
     		For example, by including the following two libraries...</p>
     		
         <pre><code style="zoom:1;">
-&lt;script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/hmac-sha1.js"&gt;&lt;/script&gt;  
-&lt;script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/components/enc-base64-min.js"&gt;&lt;/script&gt;  
-&lt;script&gt;
 function generate_key() {
   var key = document.getElementById('key');
   var select = document.getElementById('operations');
@@ -110,18 +115,19 @@ function generate_key() {
   var showts = document.getElementById('timestamp');
   var ecshowsg = document.getElementById('ecsignature');
   var ecshowts = document.getElementById('ectimestamp');
-  var service = "AWSMechanicalTurkRequester";
-  var timestamp = new Date().toISOString();
-  var operation = select.value; // e.g. "GetAccountBalance"
-  var secret = key.value;
-  var str = service + operation + timestamp;
-  var signature = CryptoJS.HmacSHA1(str, secret).toString(CryptoJS.enc.Base64);
-  showsg.value = signature;
-  showts.value = timestamp;
-  ecshowsg.value = encodeURIComponent(signature);
-  ecshowts.value = encodeURIComponent(timestamp);
+  var stub_url = document.getElementById('stub_url');
+  
+  var result = A.generate_key({
+    operation: select.value,
+    secret_key: key.value
+  });
+  
+  showsg.value = result.signature;
+  showts.value = result.timestamp;
+  ecshowsg.value = result.url_encoded_signature;
+  ecshowts.value = result.url_encoded_timestamp;
+  stub_url.value = result.stub_url;
 }
-&lt;/script&gt;
         </code></pre>
         
         <p>
@@ -136,6 +142,8 @@ function generate_key() {
         <h4>Results in URL Encoded Format:</h4>
         <span class="span_float">Signature:</span><input type="text" id="ecsignature" disabled /><br />
         <span class="span_float">Timestamp:</span><input type="text" id="ectimestamp" disabled /><br />
+        <h4>Initial URL:</h4>
+        <input type="text" id="stub_url" disabled /><br />
         <br />
         For example, to assign a qualification to a worker:</p>
         
